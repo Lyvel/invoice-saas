@@ -35,7 +35,7 @@ export async function authMiddleware(
     }
 
     // Redirect authenticated users away from auth pages to dashboard
-    if (isPublicRoute && pathname !== "/" && sessionToken) {
+    if (isPublicRoute && pathname !== "/home" && sessionToken) {
         const dashboardUrl = new URL("/dashboard", request.url);
         return NextResponse.redirect(dashboardUrl);
     }
