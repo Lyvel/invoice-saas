@@ -31,6 +31,8 @@
     "devDependencies": {
         "@eslint/eslintrc": "^3",
         "@tailwindcss/postcss": "^4",
+        "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
+        "@prettier/sync": "^0.5.2",
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
@@ -39,6 +41,8 @@
         "prisma": "^6.9.0",
         "tailwindcss": "^4",
         "tw-animate-css": "^1.3.4",
+        "prettier": "3.5.3",
+        "prettier-plugin-tailwindcss": "^0.6.9",
         "typescript": "^5"
     }
 }

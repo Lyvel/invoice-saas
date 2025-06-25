@@ -11,7 +11,13 @@ const AuthedLayout = async ({ children }: { children: React.ReactNode }) => {
             "Please setup your garage"
         );
     }
-    return <>{children}</>;
+    return (
+        <div className="flex h-screen w-screen flex-col">
+            <div className="flex h-full w-full flex-col">
+                <div className="flex h-full w-full flex-col">{children}</div>
+            </div>
+        </div>
+    );
 };
 
 export default AuthedLayout;

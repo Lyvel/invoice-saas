@@ -148,3 +148,25 @@ export const serverRedirectWithWarning = async (
     redirectUrl.searchParams.set("toast-type", "warning");
     redirect(redirectUrl.toString());
 };
+
+/**
+ * Performs a server-side redirect with an error toast message using URL parameters
+ * and clears the session cookie to prevent redirect loops
+ * Note: Cookie clearing will be handled by middleware
+ * @param url - The URL to redirect to
+ * @param message - The error message to display in the toast
+ * @returns Never - Function throws a redirect
+ */
+export const serverRedirectWithErrorAndClearSession = async (
+    url: string,
+    message: string
+): Promise<never> => {
+    const redirectUrl = new URL(
+        url,
+        process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+    );
+    redirectUrl.searchParams.set("toast-message", message);
+    redirectUrl.searchParams.set("toast-type", "error");
+    redirectUrl.searchParams.set("clear-session", "true");
+    redirect(redirectUrl.toString());
+};

@@ -86,7 +86,7 @@ export const authenticateUser = async (email: string, password: string) => {
  */
 export const createSession = async (userId: string) => {
     const sessionToken = generateSessionToken();
-    const expires = (+getTimeInEpoch() + 30 * 24 * 60 * 60).toString();
+    const expires = (+getTimeInEpoch() + 30 * 24 * 60 * 60).toString(); // 30 days
 
     const session = await db.session.create({
         data: {

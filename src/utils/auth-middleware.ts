@@ -14,6 +14,7 @@ export async function authMiddleware(
     request: NextRequest
 ): Promise<NextResponse | null> {
     const { pathname } = request.nextUrl;
+    const url = new URL(request.url);
 
     // Check if the current path matches any public route
     const isPublicRoute = PUBLIC_ROUTES.some(
@@ -22,6 +23,23 @@ export async function authMiddleware(
 
     // Get session token from cookies
     const sessionToken = request.cookies.get("session")?.value;
+
+    const shouldClearSession = url.searchParams.get("clear-session") === "true";
+
+    if (shouldClearSession) {
+        const cleanUrl = new URL(request.url);
+        cleanUrl.searchParams.delete("clear-session");
+        const response = NextResponse.redirect(cleanUrl);
+        response.cookies.set("session", "", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 0,
+            sameSite: "lax",
+            expires: new Date(0),
+            path: "/",
+        });
+        return response;
+    }
 
     // Handle unauthenticated users
     if (!sessionToken) {
@@ -40,5 +58,14 @@ export async function authMiddleware(
         return NextResponse.redirect(dashboardUrl);
     }
 
-    return null; // Let the request continue
+    const response = NextResponse.next();
+    response.cookies.set("session", sessionToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+        path: "/",
+        sameSite: "lax",
+    });
+
+    return response; // Let the request continue
 }
