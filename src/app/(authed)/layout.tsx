@@ -1,3 +1,5 @@
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { TUserWithGarages } from "@/models/user/types/user-with-garages.type";
 import { preloadChecks } from "@/utils/preload-checks";
 import { serverRedirectWithError } from "@/utils/redirect-with-toast";
@@ -12,10 +14,11 @@ const AuthedLayout = async ({ children }: { children: React.ReactNode }) => {
         );
     }
     return (
-        <div className="flex h-screen w-screen flex-col">
-            <div className="flex h-full w-full flex-col">
-                <div className="flex h-full w-full flex-col">{children}</div>
-            </div>
+        <div className="">
+            <SidebarProvider>
+                <AppSidebar user={user} />
+                <SidebarInset>{children}</SidebarInset>
+            </SidebarProvider>
         </div>
     );
 };

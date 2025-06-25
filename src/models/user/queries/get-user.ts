@@ -1,13 +1,12 @@
 import { db } from "@/utils/db";
-import { Prisma } from "@prisma/client";
+import { Prisma, User } from "@prisma/client";
 
-export const getUser = async <T>(
+export const getUser = async <T = User>(
     where: Prisma.UserWhereUniqueInput,
     include?: Prisma.UserInclude
-): Promise<T | null> => {
-    const user = await db.user.findUnique({
+) => {
+    return (await db.user.findUnique({
         where,
         include,
-    });
-    return user as T;
+    })) as T;
 };

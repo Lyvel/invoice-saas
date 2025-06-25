@@ -1,5 +1,6 @@
-import { Garage, User } from "@prisma/client";
+import { Garage } from "@prisma/client";
+import { TUser } from "./user.type";
 
-export type TUserWithGarages = User & {
+export type TUserWithGarages = TUser & {
     garages: Garage[];
 };

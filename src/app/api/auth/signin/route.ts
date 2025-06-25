@@ -65,7 +65,7 @@ export const POST = async (request: NextRequest) => {
     if (returnUrl && returnUrl.startsWith("/") && !returnUrl.startsWith("//")) {
         redirectUrl = returnUrl;
     } else {
-        redirectUrl = urls.app.home;
+        redirectUrl = urls.app.authed.dashboard;
     }
 
     return redirectWithSuccess(
