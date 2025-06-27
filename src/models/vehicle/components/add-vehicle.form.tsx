@@ -3,7 +3,7 @@
 import { FormInput } from "@/components/form-input";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { createVehicleAction } from "@/models/vehicle/actions/create-vehicle-action";
+import { createVehicleAction } from "@/models/vehicle/actions/create-vehicle.action";
 import { addVehicleSchema } from "@/models/vehicle/schemas/add-vehicle";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
