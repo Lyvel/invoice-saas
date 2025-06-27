@@ -1,6 +1,6 @@
 "use client";
 
-import { Car, LayoutDashboard, List, Settings2, Users } from "lucide-react";
+import { Car, LayoutDashboard, List, Users } from "lucide-react";
 import * as React from "react";
 
 import { GarageSwitcher } from "@/components/garage-switcher";
@@ -25,7 +25,7 @@ const data = {
         },
         {
             title: "Cars",
-            url: "#",
+            url: urls.app.authed.cars.index,
             icon: Car,
         },
         {
@@ -47,11 +47,6 @@ const data = {
                     url: "#",
                 },
             ],
-        },
-        {
-            title: "Settings",
-            url: "#",
-            icon: Settings2,
         },
     ],
 };
