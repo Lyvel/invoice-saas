@@ -15,6 +15,7 @@ type ComponentProps = {
     children: React.ReactNode;
     open?: boolean;
     onClose?: () => void;
+    closeRedirect: string;
 };
 
 export const Modal = ({
@@ -23,6 +24,7 @@ export const Modal = ({
     children,
     open = true,
     onClose,
+    closeRedirect,
 }: ComponentProps) => {
     const router = useRouter();
 
@@ -30,7 +32,7 @@ export const Modal = ({
         if (onClose) {
             onClose();
         } else {
-            router.back();
+            router.push(closeRedirect);
         }
     };
 
