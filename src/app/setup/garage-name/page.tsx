@@ -1,6 +1,5 @@
 "use client";
 
-import { FormInput } from "@/components/form-input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useSetupData } from "@/models/setup/hooks/use-setup-data";
@@ -60,7 +59,7 @@ const GarageNamePage = () => {
                             </p>
                         </div>
 
-                        <FormInput
+                        {/* <FormInput
                             label="Garage Name"
                             placeholder="e.g., Mike's Auto Repair"
                             value={garageName}
@@ -68,7 +67,7 @@ const GarageNamePage = () => {
                             error={error}
                             required
                             className="text-center"
-                        />
+                        /> */}
                     </div>
                 </CardContent>
             </Card>

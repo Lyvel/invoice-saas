@@ -58,7 +58,10 @@ export function AppSidebar({
     return (
         <Sidebar collapsible="icon" {...props}>
             <SidebarHeader>
-                <GarageSwitcher garages={user.garages} />
+                <GarageSwitcher
+                    garages={user.Garages}
+                    activeGarageId={user.activeGarageId || ""}
+                />
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={data.navMain} />

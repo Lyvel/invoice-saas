@@ -1,50 +1,73 @@
+import {
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import { forwardRef } from "react";
+import { Control, FieldPath, FieldValues } from "react-hook-form";
 
-interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface FormInputProps<
+    TFieldValues extends FieldValues = FieldValues,
+    TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "name"> {
+    control: Control<TFieldValues>;
+    name: TName;
     label?: string;
-    error?: string;
-    helperText?: string;
+    description?: string;
     required?: boolean;
 }
 
-const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
-    ({ label, error, helperText, required, className, id, ...props }, ref) => {
-        const inputId = id || label?.toLowerCase().replace(/\s+/g, "-");
-
-        return (
-            <div className="space-y-2">
-                {label && (
-                    <Label htmlFor={inputId} className="text-sm font-medium">
-                        {label}
-                        {required && (
-                            <span className="text-destructive ml-1">*</span>
-                        )}
-                    </Label>
-                )}
-                <Input
-                    id={inputId}
-                    ref={ref}
-                    className={cn(
-                        "h-11",
-                        error &&
-                            "border-destructive focus-visible:ring-destructive",
-                        className
+const FormInput = <
+    TFieldValues extends FieldValues = FieldValues,
+    TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>({
+    control,
+    name,
+    label,
+    description,
+    required,
+    className,
+    ...props
+}: FormInputProps<TFieldValues, TName>) => {
+    return (
+        <FormField
+            control={control}
+            name={name}
+            render={({ field, fieldState }) => (
+                <FormItem>
+                    {label && (
+                        <FormLabel>
+                            {label}
+                            {required && (
+                                <span className="text-destructive ml-1">*</span>
+                            )}
+                        </FormLabel>
                     )}
-                    {...props}
-                />
-                {error && <p className="text-sm text-destructive">{error}</p>}
-                {helperText && !error && (
-                    <p className="text-sm text-muted-foreground">
-                        {helperText}
-                    </p>
-                )}
-            </div>
-        );
-    }
-);
+                    <FormControl>
+                        <Input
+                            className={cn(
+                                "h-11",
+                                fieldState.error &&
+                                    "border-destructive focus-visible:ring-destructive",
+                                className
+                            )}
+                            {...field}
+                            {...props}
+                        />
+                    </FormControl>
+                    {description && (
+                        <FormDescription>{description}</FormDescription>
+                    )}
+                    <FormMessage />
+                </FormItem>
+            )}
+        />
+    );
+};
 
 FormInput.displayName = "FormInput";
 

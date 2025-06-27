@@ -19,9 +19,17 @@ import {
 import { Garage } from "@prisma/client";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
-export function GarageSwitcher({ garages }: { garages: Garage[] }) {
+export function GarageSwitcher({
+    garages,
+    activeGarageId,
+}: {
+    garages: Garage[];
+    activeGarageId: string;
+}) {
     const { isMobile } = useSidebar();
-    const [activeGarage, setActiveGarage] = React.useState(garages[0]);
+    const [activeGarage, setActiveGarage] = React.useState(
+        garages.find((garage) => garage.id === activeGarageId) || garages[0]
+    );
 
     if (!activeGarage) {
         return null;

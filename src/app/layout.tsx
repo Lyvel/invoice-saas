@@ -38,7 +38,7 @@ export default function RootLayout({
                 >
                     {children}
                 </ThemeProvider>
-                <Toaster />
+                <Toaster className="z-999999" />
                 <ToastHandler />
             </body>
         </html>

@@ -50,7 +50,7 @@ export const POST = async (request: NextRequest) => {
             },
         },
         createdAt: getTimeInEpoch(),
-        User: {
+        Users: {
             connect: {
                 id: user.id,
             },

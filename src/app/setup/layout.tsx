@@ -10,8 +10,8 @@ export default async function SetupLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const user = await preloadChecks<TUserWithGarages>({ garages: true });
-    if (user?.garages?.length && user.garages.length > 0) {
+    const user = await preloadChecks<TUserWithGarages>({ Garages: true });
+    if (user?.Garages?.length && user.Garages.length > 0) {
         return serverRedirectWithError(
             urls.app.authed.dashboard,
             "You already have a garage setup"

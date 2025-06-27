@@ -1,6 +1,5 @@
 "use client";
 
-import { FormInput } from "@/components/form-input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useSetupData } from "@/models/setup/hooks/use-setup-data";
@@ -89,7 +88,7 @@ const AddressPage = () => {
                         </div>
 
                         <div className="space-y-4">
-                            <FormInput
+                            {/* <FormInput
                                 label="Street Address"
                                 placeholder="123 Main Street"
                                 value={address.street}
@@ -98,10 +97,10 @@ const AddressPage = () => {
                                 }
                                 error={errors.street}
                                 required
-                            />
+                            /> */}
 
                             <div className="grid grid-cols-2 gap-4">
-                                <FormInput
+                                {/* <FormInput
                                     label="City"
                                     placeholder="Your City"
                                     value={address.city}
@@ -113,8 +112,8 @@ const AddressPage = () => {
                                     }
                                     error={errors.city}
                                     required
-                                />
-                                <FormInput
+                                /> */}
+                                {/* <FormInput
                                     label="County"
                                     placeholder="County"
                                     value={address.county}
@@ -126,11 +125,11 @@ const AddressPage = () => {
                                     }
                                     error={errors.county}
                                     required
-                                />
+                                /> */}
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
-                                <FormInput
+                                {/* <FormInput
                                     label="Post Code"
                                     placeholder="12345"
                                     value={address.postCode}
@@ -154,7 +153,7 @@ const AddressPage = () => {
                                         )
                                     }
                                     required
-                                />
+                                /> */}
                             </div>
                         </div>
                     </div>
