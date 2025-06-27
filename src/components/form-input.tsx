@@ -19,6 +19,7 @@ interface FormInputProps<
     label?: string;
     description?: string;
     required?: boolean;
+    action?: React.ReactNode;
 }
 
 const FormInput = <
@@ -31,6 +32,7 @@ const FormInput = <
     description,
     required,
     className,
+    action,
     ...props
 }: FormInputProps<TFieldValues, TName>) => {
     return (
@@ -48,16 +50,19 @@ const FormInput = <
                         </FormLabel>
                     )}
                     <FormControl>
-                        <Input
-                            className={cn(
-                                "h-11",
-                                fieldState.error &&
-                                    "border-destructive focus-visible:ring-destructive",
-                                className
-                            )}
-                            {...field}
-                            {...props}
-                        />
+                        <div className="relative">
+                            <Input
+                                className={cn(
+                                    "h-11",
+                                    fieldState.error &&
+                                        "border-destructive focus-visible:ring-destructive",
+                                    className
+                                )}
+                                {...field}
+                                {...props}
+                            />
+                            {action && action}
+                        </div>
                     </FormControl>
                     {description && (
                         <FormDescription>{description}</FormDescription>
