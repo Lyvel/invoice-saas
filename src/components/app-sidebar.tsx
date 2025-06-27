@@ -24,8 +24,8 @@ const data = {
             icon: LayoutDashboard,
         },
         {
-            title: "Cars",
-            url: urls.app.authed.cars.index,
+            title: "Vehicles",
+            url: urls.app.authed.vehicles.index,
             icon: Car,
         },
         {

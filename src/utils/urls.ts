@@ -13,11 +13,11 @@ export const urls = {
                 summary: "/setup/summary",
             },
             dashboard: "/dashboard",
-            cars: {
-                index: "/cars",
-                add: "/cars/add",
+            vehicles: {
+                index: "/vehicles",
+                add: "/vehicles/add",
                 selected: {
-                    index: (id: string) => `/cars/${id}`,
+                    index: (id: string) => `/vehicles/${id}`,
                 },
             },
         },
