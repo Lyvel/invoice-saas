@@ -27,10 +27,10 @@ export const registerAction = async (formData: FormData) => {
         );
     }
 
-    if (password.length < 6) {
+    if (password.length < 8) {
         return serverRedirectWithError(
             urls.app.auth.register,
-            "Password must be at least 6 characters long"
+            "Password must be at least 8 characters long"
         );
     }
 

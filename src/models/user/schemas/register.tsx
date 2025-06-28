@@ -4,7 +4,9 @@ import { z } from "zod";
 
 export const registerSchema = z
     .object({
-        name: z.string({ message: "Name is required" }),
+        name: z
+            .string({ message: "Name is required" })
+            .min(3, { message: "Name must be at least 3 characters" }),
         email: z
             .string({ message: "Email is required" })
             .email({ message: "Invalid email address" }),

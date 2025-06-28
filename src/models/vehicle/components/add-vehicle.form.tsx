@@ -6,6 +6,7 @@ import { Form } from "@/components/ui/form";
 import { createVehicleAction } from "@/models/vehicle/actions/create-vehicle.action";
 import { addVehicleSchema } from "@/models/vehicle/schemas/add-vehicle";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
@@ -78,7 +79,11 @@ export const AddVehicleForm = () => {
                         disabled={pending}
                     />
                     <Button type="submit" disabled={pending}>
-                        {pending ? "Adding Vehicle..." : "Add Vehicle"}
+                        {pending ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                            "Add Vehicle"
+                        )}
                     </Button>
                 </div>
             </form>

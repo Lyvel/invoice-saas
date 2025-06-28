@@ -4,7 +4,7 @@ import { FormInput } from "@/components/form-input";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
@@ -26,6 +26,7 @@ export const RegisterForm = () => {
 
     const onSubmit = async (data: z.infer<typeof registerSchema>) => {
         setPending(true);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         const formData = new FormData();
         formData.append("name", data.name);
         formData.append("email", data.email);
@@ -122,7 +123,11 @@ export const RegisterForm = () => {
                     className="w-full h-11"
                     disabled={pending}
                 >
-                    Create account
+                    {pending ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                        "Create account"
+                    )}
                 </Button>
             </form>
         </Form>
