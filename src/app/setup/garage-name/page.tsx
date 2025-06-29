@@ -58,16 +58,6 @@ const GarageNamePage = () => {
                                 the app.
                             </p>
                         </div>
-
-                        {/* <FormInput
-                            label="Garage Name"
-                            placeholder="e.g., Mike's Auto Repair"
-                            value={garageName}
-                            onChange={(e) => handleInputChange(e.target.value)}
-                            error={error}
-                            required
-                            className="text-center"
-                        /> */}
                     </div>
                 </CardContent>
             </Card>
