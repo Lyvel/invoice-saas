@@ -8,19 +8,20 @@ generator client {
 }
 
 model User {
-    id             String    @id @default(cuid())
+    id             String     @id @default(cuid())
     name           String?
-    email          String    @unique
+    email          String     @unique
     password       String
     emailVerified  String?
     image          String?
-    type           UserType  @default(USER)
+    type           UserType   @default(USER)
     sessions       Session[]
     createdAt      String
     updatedAt      String?
     activeGarageId String?
     Garages        Garage[]
     Vehicles       Vehicle[]
+    Customer       Customer[]
 }
 
 model Session {
@@ -34,18 +35,19 @@ model Session {
 }
 
 model Garage {
-    id        String    @id @default(cuid())
-    name      String    @unique
-    address   Address   @relation(fields: [addressId], references: [id], onDelete: Cascade)
-    addressId String    @unique
+    id        String     @id @default(cuid())
+    name      String     @unique
+    address   Address    @relation(fields: [addressId], references: [id], onDelete: Cascade)
+    addressId String     @unique
     createdAt String
     updatedAt String?
     Users     User[]
     Vehicles  Vehicle[]
+    Customer  Customer[]
 }
 
 model Address {
-    id        String  @id @default(cuid())
+    id        String    @id @default(cuid())
     street    String
     city      String
     county    String
@@ -54,24 +56,50 @@ model Address {
     createdAt String
     updatedAt String?
     Garage    Garage?
+    Customer  Customer?
 }
 
 model Vehicle {
-    id           String  @id @default(cuid())
-    registration String? @unique
+    id           String     @id @default(cuid())
+    registration String?    @unique
     make         String?
     model        String?
     year         Int?
-    vin          String? @unique
+    vin          String?    @unique
     createdAt    String
     updatedAt    String?
-    Garage       Garage  @relation(fields: [garageId], references: [id], onDelete: Cascade)
+    Garage       Garage     @relation(fields: [garageId], references: [id], onDelete: Cascade)
     garageId     String
-    createdBy    User    @relation(fields: [createdById], references: [id], onDelete: Cascade)
+    createdBy    User       @relation(fields: [createdById], references: [id], onDelete: Cascade)
     createdById  String
+    Customer     Customer[]
+}
+
+model Customer {
+    id          String         @id @default(cuid())
+    name        String
+    email       String?
+    phone       String?
+    address     Address?       @relation(fields: [addressId], references: [id], onDelete: Cascade)
+    addressId   String?        @unique
+    createdAt   String
+    updatedAt   String?
+    status      CustomerStatus @default(ACTIVE)
+    Vehicle     Vehicle?       @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+    vehicleId   String?
+    Garage      Garage         @relation(fields: [garageId], references: [id], onDelete: Cascade)
+    garageId    String
+    createdBy   User           @relation(fields: [createdById], references: [id], onDelete: Cascade)
+    createdById String
 }
 
 enum UserType {
     ADMIN
     USER
+}
+
+enum CustomerStatus {
+    ACTIVE
+    PREMIUM
+    INACTIVE
 }

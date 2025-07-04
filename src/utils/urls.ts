@@ -20,6 +20,13 @@ export const urls = {
                     index: (id: string) => `/vehicles/${id}`,
                 },
             },
+            customers: {
+                index: "/customers",
+                add: "/customers/add",
+                selected: {
+                    index: (id: string) => `/customers/${id}`,
+                },
+            },
         },
     },
     resources: {

@@ -30,7 +30,7 @@ const data = {
         },
         {
             title: "Customers",
-            url: "#",
+            url: urls.app.authed.customers.index,
             icon: Users,
         },
         {
